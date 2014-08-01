@@ -1,8 +1,6 @@
 AutoUpdate
 ==========
 
-AutoUpdate
-
 AutoUpdate is a standalone executable, capable of querying a config set XML manifest file and then downloading updated files to its startup folder.
 
 The system works by launching the desired application through the AutoUpdate executable. The AutoUpdate checks its config.aup file for the application's name, application executable as well as the web address of the application's manifest file. By querying the online manifest, AutoUpdate compares the existing files in the application directory to the ones listed in the manifest, working on date modified as the comparison variable. If the existing file is older than the manifest specified file, AutoUpdate will download the new file in its place. Files found on the manifest but not in the application folder will also be downloaded.  
