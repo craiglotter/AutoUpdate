@@ -1,0 +1,3 @@
+APPLICATION_NAME=Text2Hex
+EXECUTABLE=Text2Hex.exe
+MANIFEST=http://www.commerce.uct.ac.za/Services/CodeUnit/AutoUpdate/Text2Hex/manifest.xml
