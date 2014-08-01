@@ -1,4 +1,86 @@
 AutoUpdate
 ==========
 
+AutoUpdate
+
 AutoUpdate is a standalone executable, capable of querying a config set XML manifest file and then downloading updated files to its startup folder.
+
+The system works by launching the desired application through the AutoUpdate executable. The AutoUpdate checks its config.aup file for the application's name, application executable as well as the web address of the application's manifest file. By querying the online manifest, AutoUpdate compares the existing files in the application directory to the ones listed in the manifest, working on date modified as the comparison variable. If the existing file is older than the manifest specified file, AutoUpdate will download the new file in its place. Files found on the manifest but not in the application folder will also be downloaded.  
+
+Once the manifest has been parsed and the updates made, AutoUpdate closes itself and launches the application executable.
+
+AutoUpdate runs only once a day, but can be forced to run by starting it with the Command Line Argument of 'force' (i.e. "AutoUpdate.exe force")
+
+Note: The manifest used is basically a UTF-8 encoded XML recursive file listing of all the files present in the program's startup folder and is created using 'AutoUpdate Manifest Creator'
+
+Note: AutoUpdate is able to update itself because it launches itself from a self-made copy, meaning that the AutoUpdate.exe file can in fact be overwritten when downloading new files.
+
+Note: To counter IIS inability to serve certain protected mime types, all files are now zipped using the 7z compression algorithm
+
+Created by Craig Lotter, August 2006
+
+*********************************
+
+Project Details:
+
+Coded in Visual Basic .NET using Visual Studio .NET 2005
+Implements concepts such as XML parsing and file manipulation.
+Level of Complexity: simple
+
+*********************************
+
+Update 20070118.02:
+
+- Checks network availability before attempting file download
+
+*********************************
+
+Update 20070129.03:
+
+- Implemented 7z compression for all files that are downloaded (in conjunction with AutoUpdate Manifest Creator)
+
+*********************************
+
+Update 20070402.04:
+
+- Now uses background worker thread to run main update downloading procedure. Means the main application window can now be manipulated while downloads are taking place.
+
+*********************************
+
+Update 20070619.05:
+
+- Fixed bug where files were being replaced because of faulty FileExists check.
+- Records manifest datestamp on exit
+
+*********************************
+
+Update 20070920.06:
+
+- Now only runs once a day (info saved in config_lastRun.aup)
+- Can be forced to run by use of a Command Line Argument, namely "AutoUpdate.exe force"
+
+*********************************
+
+Update 20071030.07:
+
+- Fixed bug whereby Executable launch command line wasn't enclosed by quotation marks
+
+*********************************
+
+Update 20071101.08:
+
+- Now recreates file names containing & or # characters correctly (in conjunction with AutoUpdate Manifest Creator)
+- Improved activity logging
+
+*********************************
+
+Update 20080303.09:
+
+- The command line argument "AutoUpdate.exe updateonly" will run the autoupdater without actually launching the application once the update is complete.
+
+*********************************
+
+Update 20080416.10:
+
+- Due to the .NET framework's inherit slowness in launching and performing certain tasks, AutoUpdate no longer autominimizes itself and instead provides constant visible status updates to the user.
+- Slight changes to the application layout
